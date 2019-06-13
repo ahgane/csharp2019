@@ -44,10 +44,13 @@ namespace Addressbook_Web_Tests
         public void ContactCreationTest()
         {
             GoToLoginPage();
-            Login();
+            Login(new AccountData("admin", "secret"));
             GoToContactsPage();
             CreateNewContact();
-            FillInContactForm();
+            ContactData contact = new ContactData("name","surname" );
+            contact.Address = "London";
+            contact.Mobile = "9876546";
+            FillInContactForm(contact);
             ConfirmContactCreation();
             GoToHomePage();
             Logout();
@@ -78,35 +81,35 @@ namespace Addressbook_Web_Tests
             driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Notes:'])[1]/following::input[1]")).Click();
         }
 
-        private void FillInContactForm()
+        private void FillInContactForm(ContactData contact)
         {
             driver.FindElement(By.Name("firstname")).Click();
             driver.FindElement(By.Name("firstname")).Clear();
-            driver.FindElement(By.Name("firstname")).SendKeys("Evgeniya");
+            driver.FindElement(By.Name("firstname")).SendKeys(contact.Name);
             driver.FindElement(By.Name("theform")).Click();
             driver.FindElement(By.Name("lastname")).Click();
             driver.FindElement(By.Name("lastname")).Clear();
-            driver.FindElement(By.Name("lastname")).SendKeys("Mikheeva");
+            driver.FindElement(By.Name("lastname")).SendKeys(contact.Surname);
             driver.FindElement(By.Name("theform")).Click();
             driver.FindElement(By.Name("address")).Click();
             driver.FindElement(By.Name("address")).Clear();
-            driver.FindElement(By.Name("address")).SendKeys("Moscow");
+            driver.FindElement(By.Name("address")).SendKeys(contact.Address);
             driver.FindElement(By.Name("theform")).Click();
             driver.FindElement(By.Name("address")).Click();
             driver.FindElement(By.Name("mobile")).Click();
             driver.FindElement(By.Name("mobile")).Clear();
-            driver.FindElement(By.Name("mobile")).SendKeys("12345678");
+            driver.FindElement(By.Name("mobile")).SendKeys(contact.Mobile);
         }
 
-        private void Login()
+        private void Login(AccountData account)
         {
             driver.FindElement(By.Name("user")).Click();
             driver.FindElement(By.Name("user")).Clear();
-            driver.FindElement(By.Name("user")).SendKeys("ADMIN");
+            driver.FindElement(By.Name("user")).SendKeys(account.Username);
             driver.FindElement(By.Id("LoginForm")).Click();
             driver.FindElement(By.Name("pass")).Click();
             driver.FindElement(By.Name("pass")).Clear();
-            driver.FindElement(By.Name("pass")).SendKeys("secret");
+            driver.FindElement(By.Name("pass")).SendKeys(account.Password);
         }
 
         private void GoToLoginPage()
