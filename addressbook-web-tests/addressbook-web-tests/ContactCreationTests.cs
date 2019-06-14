@@ -45,7 +45,6 @@ namespace Addressbook_Web_Tests
         {
             GoToLoginPage();
             Login(new AccountData("admin", "secret"));
-            GoToContactsPage();
             CreateNewContact();
             ContactData contact = new ContactData("name","surname" );
             contact.Address = "London";
@@ -54,11 +53,6 @@ namespace Addressbook_Web_Tests
             ConfirmContactCreation();
             GoToHomePage();
             Logout();
-        }
-
-        private void GoToContactsPage()
-        {
-            driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Password:'])[1]/following::input[2]")).Click();
         }
 
         private void CreateNewContact()
@@ -78,7 +72,7 @@ namespace Addressbook_Web_Tests
 
         private void ConfirmContactCreation()
         {
-            driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Notes:'])[1]/following::input[1]")).Click();
+            driver.FindElement(By.XPath("(//input[@name='submit'])[2]")).Click();
         }
 
         private void FillInContactForm(ContactData contact)
@@ -110,6 +104,7 @@ namespace Addressbook_Web_Tests
             driver.FindElement(By.Name("pass")).Click();
             driver.FindElement(By.Name("pass")).Clear();
             driver.FindElement(By.Name("pass")).SendKeys(account.Password);
+            driver.FindElement(By.XPath("//input[@value='Login']")).Click();
         }
 
         private void GoToLoginPage()
