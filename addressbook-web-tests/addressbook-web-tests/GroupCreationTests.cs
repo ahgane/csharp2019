@@ -12,16 +12,16 @@ namespace Addressbook_Web_Tests
         [Test]
         public void GroupCreationTest()
         {
-            GoToLoginPage();
-            Login(new AccountData ("admin", "secret"));
-            GoToGroupsPage();
+            navigator.GoToLoginPage();
+            loginHelper.Login(new AccountData ("admin", "secret"));
+            navigator.GoToGroupsPage();
             CreateGroup();
             GroupData group = new GroupData("g1");
             group.Footer = "f1";
             group.Header = "h1";
             FillInGroupForm(group);
             ConfirmGroupCreation();
-            GoToGroupsPage();
+            navigator.GoToGroupsPage();
             Logout();
         }
     }
