@@ -12,16 +12,16 @@ namespace Addressbook_Web_Tests
         [Test]
         public void ContactCreationTest()
         {
-            navigator.GoToLoginPage();
-            loginHelper.Login(new AccountData("admin", "secret"));
-            contactHelper.CreateNewContact();
+            app.Navigator.GoToLoginPage();
+            app.Auth.Login(new AccountData("admin", "secret"));
+            app.Contacts.CreateNewContact();
             ContactData contact = new ContactData("name","surname" );
             contact.Address = "London";
             contact.Mobile = "9876546";
-            contactHelper.FillInContactForm(contact);
-            contactHelper.ConfirmContactCreation();
-            navigator.GoToHomePage();
-            navigator.Logout();
+            app.Contacts.FillInContactForm(contact);
+            app.Contacts.ConfirmContactCreation();
+            app.Navigator.GoToHomePage();
+            app.Navigator.Logout();
         }
     }
 }
