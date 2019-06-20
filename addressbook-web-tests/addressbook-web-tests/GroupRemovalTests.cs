@@ -15,9 +15,9 @@ namespace Addressbook_Web_Tests
             navigator.GoToLoginPage();
             loginHelper.Login(new AccountData("admin", "secret"));
             navigator.GoToGroupsPage();
-            RemoveGroup(1);
+            groupHelper.RemoveGroup(1);
             navigator.GoToGroupsPage();
-            Logout();
+            navigator.Logout();
         }
     }
 }

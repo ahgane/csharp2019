@@ -15,14 +15,14 @@ namespace Addressbook_Web_Tests
             navigator.GoToLoginPage();
             loginHelper.Login(new AccountData ("admin", "secret"));
             navigator.GoToGroupsPage();
-            CreateGroup();
+            groupHelper.CreateGroup();
             GroupData group = new GroupData("g1");
             group.Footer = "f1";
             group.Header = "h1";
-            FillInGroupForm(group);
-            ConfirmGroupCreation();
+            groupHelper.FillInGroupForm(group);
+            groupHelper.ConfirmGroupCreation();
             navigator.GoToGroupsPage();
-            Logout();
+            navigator.Logout();
         }
     }
 }

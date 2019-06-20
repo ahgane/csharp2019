@@ -18,6 +18,9 @@ namespace Addressbook_Web_Tests
         protected string baseURL;
         protected LoginHelper loginHelper;
         protected NavigationHelper navigator;
+        protected GroupHelper groupHelper;
+        protected ContactHelper contactHelper;
+
         [SetUp]
         public void SetupTest()
         {
@@ -27,6 +30,8 @@ namespace Addressbook_Web_Tests
 
             loginHelper = new LoginHelper(driver);
             navigator = new NavigationHelper(driver, baseURL);
+            contactHelper = new ContactHelper(driver);
+            groupHelper = new GroupHelper(driver);
         }
 
         [TearDown]
@@ -42,65 +47,5 @@ namespace Addressbook_Web_Tests
             }
             Assert.AreEqual("", verificationErrors.ToString());
         }
-        protected void Logout()
-        {
-            driver.FindElement(By.LinkText("Logout")).Click();
-        }
-
-        protected void ConfirmGroupCreation()
-        {
-            driver.FindElement(By.Name("submit")).Click();
-        }
-        protected void CreateGroup()
-        {
-            driver.FindElement(By.Name("new")).Click();
-        }
-
-        protected void FillInGroupForm(GroupData group)
-        {
-            driver.FindElement(By.Name("group_name")).Click();
-            driver.FindElement(By.Name("group_name")).Clear();
-            driver.FindElement(By.Name("group_name")).SendKeys(group.Name);
-            driver.FindElement(By.Name("group_header")).Click();
-            driver.FindElement(By.Name("group_header")).Clear();
-            driver.FindElement(By.Name("group_header")).SendKeys(group.Header);
-            driver.FindElement(By.Name("group_footer")).Click();
-            driver.FindElement(By.Name("group_footer")).Clear();
-            driver.FindElement(By.Name("group_footer")).SendKeys(group.Footer);
-        }
-        protected void CreateNewContact()
-        {
-            driver.FindElement(By.LinkText("add new")).Click();
-        }
-        protected void ConfirmContactCreation()
-        {
-            driver.FindElement(By.XPath("(//input[@name='submit'])[2]")).Click();
-        }
-
-        protected void FillInContactForm(ContactData contact)
-        {
-            driver.FindElement(By.Name("firstname")).Click();
-            driver.FindElement(By.Name("firstname")).Clear();
-            driver.FindElement(By.Name("firstname")).SendKeys(contact.Name);
-            driver.FindElement(By.Name("theform")).Click();
-            driver.FindElement(By.Name("lastname")).Click();
-            driver.FindElement(By.Name("lastname")).Clear();
-            driver.FindElement(By.Name("lastname")).SendKeys(contact.Surname);
-            driver.FindElement(By.Name("theform")).Click();
-            driver.FindElement(By.Name("address")).Click();
-            driver.FindElement(By.Name("address")).Clear();
-            driver.FindElement(By.Name("address")).SendKeys(contact.Address);
-            driver.FindElement(By.Name("theform")).Click();
-            driver.FindElement(By.Name("address")).Click();
-            driver.FindElement(By.Name("mobile")).Click();
-            driver.FindElement(By.Name("mobile")).Clear();
-            driver.FindElement(By.Name("mobile")).SendKeys(contact.Mobile);
-        }
-        protected void RemoveGroup(int index)
-        {
-            driver.FindElement(By.Name("selected[]")).Click();
-            driver.FindElement(By.XPath("(//input[@name='delete'])[" + index + "]")).Click();
-        }
-
     }
 }

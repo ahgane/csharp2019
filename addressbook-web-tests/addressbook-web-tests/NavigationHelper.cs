@@ -10,13 +10,11 @@ using OpenQA.Selenium.Support.UI;
 
 namespace Addressbook_Web_Tests
 {
-    public class NavigationHelper
+    public class NavigationHelper : HelperBase
     {
-        private IWebDriver driver;
         private string baseURL;
-        public NavigationHelper(IWebDriver driver, string baseURL)
+        public NavigationHelper(IWebDriver driver, string baseURL) : base(driver)
         {
-            this.driver = driver;
             this.baseURL = baseURL;
         }
         public void GoToLoginPage()
@@ -30,6 +28,10 @@ namespace Addressbook_Web_Tests
         public void GoToHomePage()
         {
             driver.FindElement(By.LinkText("home")).Click();
+        }
+        public void Logout()
+        {
+            driver.FindElement(By.LinkText("Logout")).Click();
         }
     }
 }

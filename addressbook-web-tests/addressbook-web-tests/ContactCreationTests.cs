@@ -14,14 +14,14 @@ namespace Addressbook_Web_Tests
         {
             navigator.GoToLoginPage();
             loginHelper.Login(new AccountData("admin", "secret"));
-            CreateNewContact();
+            contactHelper.CreateNewContact();
             ContactData contact = new ContactData("name","surname" );
             contact.Address = "London";
             contact.Mobile = "9876546";
-            FillInContactForm(contact);
-            ConfirmContactCreation();
+            contactHelper.FillInContactForm(contact);
+            contactHelper.ConfirmContactCreation();
             navigator.GoToHomePage();
-            Logout();
+            navigator.Logout();
         }
     }
 }
