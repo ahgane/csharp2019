@@ -17,16 +17,26 @@ namespace Addressbook_Web_Tests
         {
         }
 
-        public void CreateNewContact()
+        public ContactHelper NewContact (ContactData contact)
         {
-            driver.FindElement(By.LinkText("add new")).Click();
-        }
-        public void ConfirmContactCreation()
-        {
-            driver.FindElement(By.XPath("(//input[@name='submit'])[2]")).Click();
+            CreateNewContact();
+            FillInContactForm(contact);
+            ConfirmContactCreation();
+            return this;
         }
 
-        public void FillInContactForm(ContactData contact)
+        public ContactHelper CreateNewContact()
+        {
+            driver.FindElement(By.LinkText("add new")).Click();
+            return this;
+        }
+        public ContactHelper ConfirmContactCreation()
+        {
+            driver.FindElement(By.XPath("(//input[@name='submit'])[2]")).Click();
+            return this;
+        }
+
+        public ContactHelper FillInContactForm(ContactData contact)
         {
             driver.FindElement(By.Name("firstname")).Click();
             driver.FindElement(By.Name("firstname")).Clear();
@@ -44,6 +54,7 @@ namespace Addressbook_Web_Tests
             driver.FindElement(By.Name("mobile")).Click();
             driver.FindElement(By.Name("mobile")).Clear();
             driver.FindElement(By.Name("mobile")).SendKeys(contact.Mobile);
+            return this;
         }
     }
 }
