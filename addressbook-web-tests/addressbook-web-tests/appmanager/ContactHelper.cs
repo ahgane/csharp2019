@@ -13,7 +13,7 @@ namespace Addressbook_Web_Tests
     public class ContactHelper : HelperBase
     {
 
-        public ContactHelper(IWebDriver driver) : base(driver)
+        public ContactHelper(ApplicationManager manager) : base(manager)
         {
         }
 
@@ -22,6 +22,10 @@ namespace Addressbook_Web_Tests
             CreateNewContact();
             FillInContactForm(contact);
             ConfirmContactCreation();
+
+            manager.Navigator.GoToHomePage();
+            manager.Navigator.Logout();
+
             return this;
         }
 

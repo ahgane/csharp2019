@@ -15,21 +15,17 @@ namespace Addressbook_Web_Tests
             ContactData contact = new ContactData("name", "surname");
             contact.Address = "London";
             contact.Mobile = "9876546";
-            app.Contacts
-                .CreateNewContact()
-                .FillInContactForm(contact)
-                .ConfirmContactCreation();
-            app.Navigator.GoToHomePage();
-            app.Navigator.Logout();
+
+            app.Contacts.NewContact(contact);
         }
         public void EmptyContactCreationTest()
         {
             ContactData contact = new ContactData("", "");
             contact.Address = "";
             contact.Mobile = "";
+
             app.Contacts.NewContact(contact);
-            app.Navigator.GoToHomePage();
-            app.Navigator.Logout();
+
         }
     }
 }

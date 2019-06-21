@@ -12,15 +12,20 @@ namespace Addressbook_Web_Tests
 {
     public class GroupHelper : HelperBase
     {
-        public GroupHelper(IWebDriver driver) : base (driver)
+        public GroupHelper(ApplicationManager manager) : base (manager)
         {
         }
 
         public GroupHelper New(GroupData group)
         {
+            manager.Navigator.GoToGroupsPage();
+
             CreateGroup();
             FillInGroupForm(group);
             ConfirmGroupCreation();
+            manager.Navigator.GoToGroupsPage();
+            manager.Navigator.Logout();
+
             return this;
         }
 

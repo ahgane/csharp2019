@@ -16,10 +16,7 @@ namespace Addressbook_Web_Tests
             group.Footer = "f1";
             group.Header = "h1";
 
-            app.Navigator.GoToGroupsPage();
             app.Groups.New(group);
-            app.Navigator.GoToGroupsPage();
-            app.Navigator.Logout();
         }
 
         public void EmptyGroupCreationTest()
@@ -28,11 +25,8 @@ namespace Addressbook_Web_Tests
             group.Footer = "f1";
             group.Header = "h1";
 
-
-            app.Navigator.GoToGroupsPage();
             app.Groups.New(group);
-            app.Navigator.GoToGroupsPage();
-            app.Navigator.Logout();
+
         }
     }
 }
