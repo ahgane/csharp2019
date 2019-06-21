@@ -23,7 +23,7 @@ namespace Addressbook_Web_Tests
 
         protected ApplicationManager app;
 
-        public ApplicationManager () {
+        public ApplicationManager() {
             loginHelper = new LoginHelper(driver);
             navigator = new NavigationHelper(driver, baseURL);
             contactHelper = new ContactHelper(driver);
@@ -43,7 +43,7 @@ namespace Addressbook_Web_Tests
                 return navigator;
             }
         }
-        public GroupHelper Groups 
+        public GroupHelper Groups
         {
             get
             {
@@ -57,9 +57,9 @@ namespace Addressbook_Web_Tests
                 return contactHelper;
             }
         }
-
-        public void Stop() {
-
+ 
+        public void Stop()
+        {
             try
             {
                 driver.Quit();

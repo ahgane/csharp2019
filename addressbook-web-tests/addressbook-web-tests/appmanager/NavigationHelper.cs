@@ -12,7 +12,7 @@ namespace Addressbook_Web_Tests
 {
     public class NavigationHelper : HelperBase
     {
-        private string baseURL;
+        public string baseURL;
         public NavigationHelper(IWebDriver driver, string baseURL) : base(driver)
         {
             this.baseURL = baseURL;
