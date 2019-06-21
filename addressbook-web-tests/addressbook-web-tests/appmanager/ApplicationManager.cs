@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Chrome;
@@ -20,26 +21,21 @@ namespace Addressbook_Web_Tests
         protected GroupHelper groupHelper;
         protected ContactHelper contactHelper;
 
-        public ApplicationManager()
-        {
-            driver = new ChromeDriver();
-            baseURL = "http://localhost:8080/addressbook";
+        protected ApplicationManager app;
 
-            loginHelper = new LoginHelper(this);
-            navigator = new NavigationHelper(this);
-            contactHelper = new ContactHelper(this);
-            groupHelper = new GroupHelper(this);
+        public ApplicationManager() {
+            loginHelper = new LoginHelper(driver);
+            navigator = new NavigationHelper(driver, baseURL);
+            contactHelper = new ContactHelper(driver);
+            groupHelper = new GroupHelper(driver);
 
         }
 
-        public LoginHelper Auth
-        {
-            get
-            {
+        public LoginHelper Auth {
+            get {
                 return loginHelper;
             }
         }
-
         public NavigationHelper Navigator
         {
             get
@@ -47,7 +43,6 @@ namespace Addressbook_Web_Tests
                 return navigator;
             }
         }
-
         public GroupHelper Groups
         {
             get
@@ -55,7 +50,6 @@ namespace Addressbook_Web_Tests
                 return groupHelper;
             }
         }
-
         public ContactHelper Contacts
         {
             get
@@ -63,23 +57,7 @@ namespace Addressbook_Web_Tests
                 return contactHelper;
             }
         }
-
-        public IWebDriver Driver
-        {
-            get
-            {
-                return driver;
-            }
-        }
-
-        public string BaseURL
-        {
-            get
-            {
-                return baseURL;
-            }
-        }
-
+ 
         public void Stop()
         {
             try
