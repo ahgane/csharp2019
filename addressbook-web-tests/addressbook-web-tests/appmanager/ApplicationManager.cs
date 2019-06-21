@@ -13,7 +13,6 @@ namespace Addressbook_Web_Tests
     public class ApplicationManager
     {
         protected IWebDriver driver;
-        private StringBuilder verificationErrors;
         protected string baseURL;
 
         protected LoginHelper loginHelper;
@@ -25,7 +24,6 @@ namespace Addressbook_Web_Tests
         {
             driver = new ChromeDriver();
             baseURL = "http://localhost:8080/addressbook";
-            verificationErrors = new StringBuilder();
 
             loginHelper = new LoginHelper(driver);
             navigator = new NavigationHelper(driver, baseURL);
