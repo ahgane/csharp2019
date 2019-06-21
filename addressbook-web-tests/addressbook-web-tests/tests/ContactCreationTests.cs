@@ -18,6 +18,7 @@ namespace Addressbook_Web_Tests
 
             app.Contacts.NewContact(contact);
         }
+        [Test]
         public void EmptyContactCreationTest()
         {
             ContactData contact = new ContactData("", "");

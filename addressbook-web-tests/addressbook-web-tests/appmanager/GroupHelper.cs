@@ -16,6 +16,15 @@ namespace Addressbook_Web_Tests
         {
         }
 
+        public GroupHelper Remove(int v)
+        {
+            manager.Navigator.GoToGroupsPage();
+            RemoveGroup(1);
+            manager.Navigator.GoToGroupsPage();
+            manager.Navigator.Logout();
+            return this;
+        }
+
         public GroupHelper New(GroupData group)
         {
             manager.Navigator.GoToGroupsPage();

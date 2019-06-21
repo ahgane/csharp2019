@@ -11,11 +11,8 @@ namespace Addressbook_Web_Tests
     {
         [Test]
         public void GroupRemovalTest()
-        {
-            app.Navigator.GoToGroupsPage();
-            app.Groups.RemoveGroup(1);
-            app.Navigator.GoToGroupsPage();
-            app.Navigator.Logout();
+        {        
+            app.Groups.Remove(1);
         }
     }
 }

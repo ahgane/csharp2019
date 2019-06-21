@@ -19,11 +19,12 @@ namespace Addressbook_Web_Tests
             app.Groups.New(group);
         }
 
+        [Test]
         public void EmptyGroupCreationTest()
         {
-            GroupData group = new GroupData("g1");
-            group.Footer = "f1";
-            group.Header = "h1";
+            GroupData group = new GroupData("");
+            group.Footer = "";
+            group.Header = "";
 
             app.Groups.New(group);
 
