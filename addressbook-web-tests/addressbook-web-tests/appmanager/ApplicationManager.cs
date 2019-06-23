@@ -19,8 +19,9 @@ namespace Addressbook_Web_Tests
         protected NavigationHelper navigator;
         protected GroupHelper groupHelper;
         protected ContactHelper contactHelper;
+        private static ApplicationManager instance;
 
-        public ApplicationManager()
+        private ApplicationManager()
         {
             driver = new ChromeDriver();
             baseURL = "http://localhost:8080/addressbook";
@@ -30,6 +31,16 @@ namespace Addressbook_Web_Tests
             contactHelper = new ContactHelper(this);
             groupHelper = new GroupHelper(this);
 
+        }
+
+        public static ApplicationManager GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new ApplicationManager();
+            }
+
+            return instance;
         }
 
         public LoginHelper Auth

@@ -14,7 +14,7 @@ namespace Addressbook_Web_Tests
         [SetUp]
         public void SetupTest()
         {
-            app = TestSuiteFixture.app;
+            app = ApplicationManager.GetInstance();
 
         }
     }
