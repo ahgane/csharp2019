@@ -46,7 +46,6 @@ namespace Addressbook_Web_Tests
             FillInGroupForm(group);
             ConfirmGroupCreation();
             manager.Navigator.GoToGroupsPage();
-            manager.Navigator.Logout();
 
             return this;
         }
@@ -64,17 +63,12 @@ namespace Addressbook_Web_Tests
 
         public GroupHelper FillInGroupForm(GroupData group)
         {
-            driver.FindElement(By.Name("group_name")).Click();
-            driver.FindElement(By.Name("group_name")).Clear();
-            driver.FindElement(By.Name("group_name")).SendKeys(group.Name);
-            driver.FindElement(By.Name("group_header")).Click();
-            driver.FindElement(By.Name("group_header")).Clear();
-            driver.FindElement(By.Name("group_header")).SendKeys(group.Header);
-            driver.FindElement(By.Name("group_footer")).Click();
-            driver.FindElement(By.Name("group_footer")).Clear();
-            driver.FindElement(By.Name("group_footer")).SendKeys(group.Footer);
+            Type(By.Name("group_name"), group.Name);
+            Type(By.Name("group_header"), group.Header);
+            Type(By.Name("group_footer"), group.Footer);
             return this;
         }
+
         public GroupHelper RemoveGroup(int index)
         {
             driver.FindElement(By.XPath("(//input[@name='delete'])[" + index + "]")).Click();
@@ -84,6 +78,7 @@ namespace Addressbook_Web_Tests
         public GroupHelper SelectGroup(int index)
         {
             driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
+
             return this;
         }
 

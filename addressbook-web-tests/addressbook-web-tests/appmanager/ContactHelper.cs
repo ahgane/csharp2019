@@ -62,7 +62,6 @@ namespace Addressbook_Web_Tests
             ConfirmContactCreation();
 
             manager.Navigator.GoToHomePage();
-            manager.Navigator.Logout();
 
             return this;
         }
@@ -80,19 +79,11 @@ namespace Addressbook_Web_Tests
 
         public ContactHelper FillInContactForm(ContactData contact)
         {
-            driver.FindElement(By.Name("firstname")).Click();
-            driver.FindElement(By.Name("firstname")).Clear();
-            driver.FindElement(By.Name("firstname")).SendKeys(contact.Name);
-            driver.FindElement(By.Name("lastname")).Click();
-            driver.FindElement(By.Name("lastname")).Clear();
-            driver.FindElement(By.Name("lastname")).SendKeys(contact.Surname);
-            driver.FindElement(By.Name("address")).Click();
-            driver.FindElement(By.Name("address")).Clear();
-            driver.FindElement(By.Name("address")).SendKeys(contact.Address);
-            driver.FindElement(By.Name("address")).Click();
-            driver.FindElement(By.Name("mobile")).Click();
-            driver.FindElement(By.Name("mobile")).Clear();
-            driver.FindElement(By.Name("mobile")).SendKeys(contact.Mobile);
+            Type(By.Name("firstname"), contact.Name);
+            Type(By.Name("lastname"), contact.Surname);
+            Type(By.Name("address"), contact.Address);
+            Type(By.Name("mobile"), contact.Mobile);
+
             return this;
         }
         public ContactHelper ConfirmContactRemoval(int v)

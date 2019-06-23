@@ -16,8 +16,8 @@ namespace Addressbook_Web_Tests
             {
 
                 GroupData newData = new GroupData("g new");
-                newData.Footer = "f2";
-                newData.Header = "h3";
+                newData.Footer = null;
+                newData.Header = null;
 
                 app.Groups.Modify (1, newData);
 
