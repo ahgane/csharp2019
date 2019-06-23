@@ -51,7 +51,7 @@ namespace Addressbook_Web_Tests
             }
             set
             {
-                name = value;
+                footer = value;
             }
         }
     }
