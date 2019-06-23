@@ -12,7 +12,7 @@ namespace Addressbook_Web_Tests
         [Test]
         public void ContactCreationTest()
         {
-            ContactData contact = new ContactData("name", "surname");
+            ContactData contact = new ContactData("Test1", "surname");
             contact.Address = "London";
             contact.Mobile = "9876546";
 
