@@ -19,14 +19,5 @@ namespace Addressbook_Web_Tests
             app.Auth.Login(new AccountData("admin", "secret"));
 
         }
-
-        [TearDown]
-
-        public void StopApplicationManager ()
-        {
-            ApplicationManager.GetInstance().Stop();
-        }
-
-
     }
 }
