@@ -22,7 +22,6 @@ namespace Addressbook_Web_Tests
             SelectGroup(v);
             RemoveGroup(v);
             manager.Navigator.GoToGroupsPage();
-            manager.Navigator.Logout();
             return this;
         }
 

@@ -29,9 +29,5 @@ namespace Addressbook_Web_Tests
         {
             driver.FindElement(By.LinkText("home")).Click();
         }
-        public void Logout()
-        {
-            driver.FindElement(By.LinkText("Logout")).Click();
-        }
     }
 }
