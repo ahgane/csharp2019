@@ -28,10 +28,9 @@ namespace Addressbook_Web_Tests
 
         }
 
-        public ContactHelper Modify(int v, ContactData newContact)
+        public ContactHelper Modify(ContactData newContact)
         {
             manager.Navigator.GoToHomePage();
-            SelectContact(v);
             InitContactModification();
             FillInContactForm(newContact);
             SubmitContactModification();

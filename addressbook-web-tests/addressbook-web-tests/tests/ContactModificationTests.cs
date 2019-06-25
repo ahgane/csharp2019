@@ -15,11 +15,11 @@ namespace Addressbook_Web_Tests
         public void ContactModificationTest()
         {
 
-            ContactData newContact = new ContactData("Johnny", "Depp");
-            newContact.Address = "Paris";
-            newContact.Mobile = "12987";
+            ContactData newContact = new ContactData("Test", "Test");
+            newContact.Address = "Test";
+            newContact.Mobile = "Test";
 
-            app.Contacts.Modify(1, newContact);
+            app.Contacts.Modify(newContact);
 
         }
     }
