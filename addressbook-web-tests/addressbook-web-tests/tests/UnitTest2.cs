@@ -1,5 +1,9 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
 
 namespace addressbook_web_tests.tests
 {
@@ -9,11 +13,17 @@ namespace addressbook_web_tests.tests
         [TestMethod]
         public void TestMethod1()
         {
-            string[] s = new string[] {"test", "I", "Want", "to", "sleep", "foreach"};
-            foreach (string element in s)
+            IWebDriver driver = null;  ;
+
+            while (driver.FindElements(By.Id("test")).Count == 0)
             {
-                System.Console.Out.Write(element + "\n");
+                System.Threading.Thread.Sleep(1000);
             }
+
+            //..
+
+
+
         }
     }
 }
