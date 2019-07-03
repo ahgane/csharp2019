@@ -17,6 +17,12 @@ namespace Addressbook_Web_Tests
         {
         }
 
+        public bool ContactExist()
+        {
+            return (driver.Url == "http://localhost:8080/addressbook/"
+                && IsElementPresent(By.Name("selected[]")));
+        }
+
         internal void Remove(int v)
         {
             manager.Navigator.GoToHomePage();

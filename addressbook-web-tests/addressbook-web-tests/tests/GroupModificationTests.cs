@@ -15,12 +15,24 @@ namespace Addressbook_Web_Tests
            public void GroupModificationTest()
             {
 
-                GroupData newData = new GroupData("g new");
-                newData.Footer = null;
-                newData.Header = null;
+//            app.Navigator.GoToGroupsPage();
 
-                app.Groups.Modify (1, newData);
+            if (!app.Groups.GroupExist())
+            {
+                GroupData group = new GroupData("g1 created to modify");
+                group.Footer = "f1";
+                group.Header = "h1";
+
+                app.Groups.New(group);
+            }
+
+            GroupData newData = new GroupData("modified group 2");
+            newData.Footer = "just modified 2";
+            newData.Header = null;
+
+            app.Groups.Modify (1, newData);
 
             }
-        }
+
+    }
 }

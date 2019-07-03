@@ -11,7 +11,18 @@ namespace Addressbook_Web_Tests
     {
         [Test]
         public void GroupRemovalTest()
-        {        
+        {
+            app.Navigator.GoToGroupsPage();
+
+            if (!app.Groups.GroupExist())
+            {
+                GroupData group = new GroupData("g1");
+                group.Footer = "f1";
+                group.Header = "h1";
+
+                app.Groups.New(group);
+            }
+
             app.Groups.Remove(1);
         }
     }

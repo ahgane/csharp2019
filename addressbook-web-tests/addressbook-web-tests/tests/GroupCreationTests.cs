@@ -12,6 +12,7 @@ namespace Addressbook_Web_Tests
         [Test]
         public void GroupCreationTest()
         {
+            
             GroupData group = new GroupData("g1");
             group.Footer = "f1";
             group.Header = "h1";

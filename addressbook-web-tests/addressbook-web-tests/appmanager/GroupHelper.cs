@@ -76,7 +76,7 @@ namespace Addressbook_Web_Tests
 
         public GroupHelper SelectGroup(int index)
         {
-            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
+            driver.FindElement(By.XPath("(//span[@class='group'])[" + index + "]")).Click();
 
             return this;
         }
@@ -91,6 +91,12 @@ namespace Addressbook_Web_Tests
         {
             driver.FindElement(By.Name("edit")).Click();
             return this;
+        }
+
+        public bool GroupExist()
+        {
+            return (driver.Url == "http://localhost:8080/addressbook/group.php"
+                && IsElementPresent(By.Name("selected[]")));
         }
 
 

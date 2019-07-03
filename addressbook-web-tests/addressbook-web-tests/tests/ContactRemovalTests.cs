@@ -13,6 +13,18 @@ namespace Addressbook_Web_Tests
         [Test]
         public void ContactRemovalTest()
         {
+
+            app.Navigator.GoToHomePage();
+
+            if (!app.Contacts.ContactExist())
+            {
+                ContactData contact = new ContactData("ToDelete", "Deleted");
+                contact.Address = "NoAddress";
+                contact.Mobile = "9876546";
+
+                app.Contacts.NewContact(contact);
+            }
+
             app.Contacts.Remove(1);
         }
     }
