@@ -9,10 +9,10 @@ namespace addressbook_web_tests.tests
         [TestMethod]
         public void TestMethod1()
         {
-            string[] s = new string[] {"test", "I", "Want", "to", "sleep" };
-            for (int i = 0; i < s.Length; i = i + 1)
+            string[] s = new string[] {"test", "I", "Want", "to", "sleep", "foreach"};
+            foreach (string element in s)
             {
-                System.Console.Out.Write(s[i] + "\n");
+                System.Console.Out.Write(element + "\n");
             }
         }
     }
