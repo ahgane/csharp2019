@@ -78,6 +78,7 @@
     <Compile Include="tests\LoginTests.cs" />
     <Compile Include="tests\TestBase.cs" />
     <Compile Include="tests\UnitTest1.cs" />
+    <Compile Include="tests\UnitTest2.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
