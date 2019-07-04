@@ -29,10 +29,18 @@ namespace Addressbook_Web_Tests
             GroupData newData = new GroupData("modified group 3");
             newData.Header = null;
             newData.Footer = "new just modified 3";
-            
+
+            List<GroupData> oldGroups = app.Groups.GetGroupList();
+
             app.Groups.Modify (0, newData);
 
-            }
+            List<GroupData> newGroups = app.Groups.GetGroupList();
+            oldGroups[0].Name = newData.Name;
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
+
+        }
 
     }
 }
