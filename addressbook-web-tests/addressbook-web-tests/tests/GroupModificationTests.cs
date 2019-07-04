@@ -15,7 +15,7 @@ namespace Addressbook_Web_Tests
            public void GroupModificationTest()
             {
 
-//            app.Navigator.GoToGroupsPage();
+            app.Navigator.GoToGroupsPage();
 
             if (!app.Groups.GroupExist())
             {
@@ -26,11 +26,11 @@ namespace Addressbook_Web_Tests
                 app.Groups.New(group);
             }
 
-            GroupData newData = new GroupData("modified group 2");
-            newData.Footer = "just modified 2";
+            GroupData newData = new GroupData("modified group 3");
             newData.Header = null;
-
-            app.Groups.Modify (1, newData);
+            newData.Footer = "new just modified 3";
+            
+            app.Groups.Modify (0, newData);
 
             }
 

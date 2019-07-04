@@ -100,8 +100,21 @@ namespace Addressbook_Web_Tests
 
         public ContactHelper SelectContact(int index)
         {
-            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
+            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + (index+1) + "]")).Click();
             return this;
+        }
+
+        public List<ContactData> GetContactList()
+        {
+            manager.Navigator.GoToHomePage();
+            List<ContactData> contacts = new List<ContactData>();
+            ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("span.group"));
+            foreach (IWebElement element in elements)
+            {
+//                contacts.Add(new ContactData(element.Text));
+            }
+
+            return contacts;
         }
 
     }

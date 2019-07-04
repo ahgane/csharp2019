@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace Addressbook_Web_Tests
 {
@@ -24,8 +25,13 @@ namespace Addressbook_Web_Tests
 
                 app.Contacts.NewContact(contact);
             }
+           List<ContactData> oldContact = app.Contacts.GetContactList();
 
-            app.Contacts.Remove(1);
+            app.Contacts.Remove(0);
+
+          List<ContactData> newContact = app.Contacts.GetContactList();
+          oldContact.RemoveAt(0);
+           Assert.AreEqual(oldContact, newContact);
         }
     }
 }
