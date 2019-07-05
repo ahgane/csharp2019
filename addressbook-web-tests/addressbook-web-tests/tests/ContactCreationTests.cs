@@ -3,6 +3,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace Addressbook_Web_Tests
 {
@@ -16,7 +17,15 @@ namespace Addressbook_Web_Tests
             contact.Address = "London";
             contact.Mobile = "9876546";
 
+            List<ContactData> oldContact = app.Contacts.GetContactList();
+
             app.Contacts.NewContact(contact);
+
+            List<ContactData> newContacts = app.Contacts.GetContactList();
+            oldContact.Add(contact);
+            oldContact.Sort();
+            newContacts.Sort();
+//            Assert.AreEqual(oldContact, newContacts);
         }
         [Test]
         public void EmptyContactCreationTest()

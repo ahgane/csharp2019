@@ -28,7 +28,26 @@ namespace Addressbook_Web_Tests
             newContact.Address = "Modified address";
             newContact.Mobile = "Modified Mobile";
 
+            List<ContactData> oldContacts = app.Contacts.GetContactList();
+
             app.Contacts.Modify(newContact);
+
+            List<ContactData> newContacts = app.Contacts.GetContactList();
+
+            oldContacts[0].Name = newContact.Name;
+            oldContacts[0].Surname = newContact.Surname;
+            oldContacts.Sort();
+
+            for (int a = 0; a < 2; a++)
+            {
+                System.Console.WriteLine(oldContacts[a].Name + " " + oldContacts[a].Surname);
+            }
+            newContacts.Sort();
+            for (int a = 0; a < 2; a++)
+            {
+                System.Console.WriteLine(newContacts[a].Name + " " + newContacts[a].Surname);
+            }
+      //      Assert.AreEqual(oldContacts, newContacts);
 
         }
     }

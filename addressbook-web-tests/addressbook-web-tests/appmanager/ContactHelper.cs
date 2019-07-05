@@ -28,7 +28,7 @@ namespace Addressbook_Web_Tests
             manager.Navigator.GoToHomePage();
 
             SelectContact(v);
-            ConfirmContactRemoval(v);
+            ConfirmContactRemoval();
 
             manager.Navigator.GoToHomePage();
 
@@ -78,7 +78,7 @@ namespace Addressbook_Web_Tests
         }
         public ContactHelper ConfirmContactCreation()
         {
-            driver.FindElement(By.XPath("(//input[@name='submit'])[2]")).Click();
+            driver.FindElement(By.XPath("(//input[@name='submit'])")).Click();
             return this;
         }
 
@@ -91,7 +91,7 @@ namespace Addressbook_Web_Tests
 
             return this;
         }
-        public ContactHelper ConfirmContactRemoval(int v)
+        public ContactHelper ConfirmContactRemoval()
         {
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
             driver.SwitchTo().Alert().Accept();
@@ -106,12 +106,15 @@ namespace Addressbook_Web_Tests
 
         public List<ContactData> GetContactList()
         {
+   //         int i = 0;
             manager.Navigator.GoToHomePage();
             List<ContactData> contacts = new List<ContactData>();
-            ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("span.group"));
+            ICollection<IWebElement> elements = driver.FindElements(By.Name("selected[]"));
             foreach (IWebElement element in elements)
             {
-//                contacts.Add(new ContactData(element.Text));
+                contacts.Add(new ContactData(element.Text,element.Text));
+  //              System.Console.Out.Write(contacts[i].Name + " " + contacts[i].Surname + "\n");
+  //              i++;
             }
 
             return contacts;
