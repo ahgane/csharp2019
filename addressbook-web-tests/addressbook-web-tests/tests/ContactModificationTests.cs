@@ -38,16 +38,19 @@ namespace Addressbook_Web_Tests
             oldContacts[0].Surname = newContact.Surname;
             oldContacts.Sort();
 
-            for (int a = 0; a < 2; a++)
+            foreach (ContactData person in oldContacts)
             {
-                System.Console.WriteLine(oldContacts[a].Name + " " + oldContacts[a].Surname);
+                System.Console.WriteLine(person.Name + " " + person.Surname);
             }
+
             newContacts.Sort();
-            for (int a = 0; a < 2; a++)
+
+            foreach (ContactData person in newContacts)
             {
-                System.Console.WriteLine(newContacts[a].Name + " " + newContacts[a].Surname);
+                System.Console.WriteLine(person.Name + " " + person.Surname);
             }
-      //      Assert.AreEqual(oldContacts, newContacts);
+
+            Assert.AreEqual(oldContacts, newContacts);
 
         }
     }

@@ -106,17 +106,22 @@ namespace Addressbook_Web_Tests
 
         public List<ContactData> GetContactList()
         {
-   //         int i = 0;
             manager.Navigator.GoToHomePage();
             List<ContactData> contacts = new List<ContactData>();
-            ICollection<IWebElement> elements = driver.FindElements(By.Name("selected[]"));
-            foreach (IWebElement element in elements)
+            foreach (int a in .Count)
             {
-                contacts.Add(new ContactData(element.Text,element.Text));
-  //              System.Console.Out.Write(contacts[i].Name + " " + contacts[i].Surname + "\n");
-  //              i++;
+                ICollection<IWebElement> surnames = driver.FindElement(((By.XPath("//table[@id='maintable']/tbody/tr["+int+"]/td[2]"))));
             }
-
+            ICollection<IWebElement> names = driver.FindElements(((By.XPath("//table[@id='maintable']/tbody/tr/td[3]"))));
+            foreach (IWebElement element in surnames)
+            {
+                contacts.Add(new ContactData(null,element.Text));
+            }
+ /*           foreach (IWebElement element in names)
+            {
+                contacts.Add(new ContactData(element.Text,null));
+            }
+            */
             return contacts;
         }
 
