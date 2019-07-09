@@ -108,21 +108,41 @@ namespace Addressbook_Web_Tests
         {
             manager.Navigator.GoToHomePage();
             List<ContactData> contacts = new List<ContactData>();
-            foreach (int a in .Count)
+            List<IWebElement> cells = new List<IWebElement>();
+            ICollection<IWebElement> contactstable = driver.FindElements(By.Name("entry"));
+
+            foreach (IWebElement element in contactstable)
             {
-                ICollection<IWebElement> surnames = driver.FindElement(((By.XPath("//table[@id='maintable']/tbody/tr["+int+"]/td[2]"))));
+                cells = element.FindElements((By.TagName("td"))).ToList();
+                contacts.Add(new ContactData(cells[2].Text, cells[1].Text));
             }
-            ICollection<IWebElement> names = driver.FindElements(((By.XPath("//table[@id='maintable']/tbody/tr/td[3]"))));
-            foreach (IWebElement element in surnames)
-            {
-                contacts.Add(new ContactData(null,element.Text));
-            }
- /*           foreach (IWebElement element in names)
-            {
-                contacts.Add(new ContactData(element.Text,null));
-            }
-            */
+            
             return contacts;
+        }
+
+        public bool CompareTo(List<ContactData> oldContactslist, List<ContactData> newContactslist)
+        {
+            if (oldContactslist.Count != newContactslist.Count)
+            {
+                return false;
+            }
+            else
+            {
+
+                for (int i = 0; i < oldContactslist.Count; i++)
+                {
+                    if (oldContactslist[i].Surname == newContactslist[i].Surname)
+                    {
+                        return (oldContactslist[i].Name == newContactslist[i].Name);
+                    }
+                    else
+                    {
+                        return (oldContactslist[i].Surname == newContactslist[i].Surname);
+                    }
+
+                }
+                return true;
+            }
         }
 
     }

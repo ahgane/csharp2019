@@ -17,15 +17,17 @@ namespace Addressbook_Web_Tests
             contact.Address = "London";
             contact.Mobile = "9876546";
 
-            List<ContactData> oldContact = app.Contacts.GetContactList();
+            List<ContactData> oldContacts = app.Contacts.GetContactList();
 
             app.Contacts.NewContact(contact);
 
             List<ContactData> newContacts = app.Contacts.GetContactList();
-            oldContact.Add(contact);
-            oldContact.Sort();
+            oldContacts.Add(contact);
+            oldContacts.Sort();
             newContacts.Sort();
-//            Assert.AreEqual(oldContact, newContacts);
+            app.Contacts.CompareTo(oldContacts, newContacts);
+
+
         }
         [Test]
         public void EmptyContactCreationTest()
@@ -34,7 +36,16 @@ namespace Addressbook_Web_Tests
             contact.Address = "";
             contact.Mobile = "";
 
+            List<ContactData> oldContacts = app.Contacts.GetContactList();
+
             app.Contacts.NewContact(contact);
+
+            List<ContactData> newContacts = app.Contacts.GetContactList();
+            oldContacts.Add(contact);
+            oldContacts.Sort();
+            newContacts.Sort();
+            app.Contacts.CompareTo(oldContacts, newContacts);
+
 
         }
     }
