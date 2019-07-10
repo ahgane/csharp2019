@@ -29,6 +29,7 @@ namespace Addressbook_Web_Tests
 //            newContact.Mobile = "Modified Mobile";
 
             List<ContactData> oldContacts = app.Contacts.GetContactList();
+            ContactData oldData = oldContacts[0];
 
             app.Contacts.Modify(newContact);
 
@@ -53,6 +54,15 @@ namespace Addressbook_Web_Tests
             //           Assert.AreEqual(oldContacts, newContacts);
 
             app.Contacts.CompareTo(oldContacts, newContacts);
+
+            foreach (ContactData contact in newContacts)
+            {
+                if (contact.Id == oldData.Id)
+                {
+                    Assert.AreEqual(contact.Surname, newContact.Surname);
+                    Assert.AreEqual(newContact.Name, contact.Name);
+                }
+            }
 
             
 

@@ -29,10 +29,17 @@ namespace Addressbook_Web_Tests
             app.Contacts.Remove(0);
 
             List<ContactData> newContacts = app.Contacts.GetContactList();
+            ContactData toBeRemoved = oldContact[0];
             oldContact.RemoveAt(0);
             oldContact.Sort();
             newContacts.Sort();
             Assert.AreEqual(oldContact, newContacts);
+
+            foreach (ContactData contact in newContacts)
+            {
+                Assert.AreNotEqual(contact.Id, toBeRemoved.Id);
+            }
+
         }
     }
 }

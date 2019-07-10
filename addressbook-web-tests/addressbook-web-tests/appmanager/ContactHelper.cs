@@ -122,7 +122,11 @@ namespace Addressbook_Web_Tests
                 foreach (IWebElement element in contactstable)
                 {
                     cells = element.FindElements((By.TagName("td"))).ToList();
-                    contactCache.Add(new ContactData(cells[2].Text, cells[1].Text));
+                            
+                    contactCache.Add(new ContactData(cells[2].Text, cells[1].Text)
+                    {
+                        Id = element.FindElement(By.TagName("input")).GetAttribute("value")
+                    });
                 }
             }
             
