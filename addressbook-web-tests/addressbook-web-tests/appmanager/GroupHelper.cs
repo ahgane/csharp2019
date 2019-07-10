@@ -68,9 +68,15 @@ namespace Addressbook_Web_Tests
             return this;
         }
 
+        public int GetGroupCount()
+        {
+            return driver.FindElements(By.CssSelector("span.group")).Count;
+        }
+
         public GroupHelper ConfirmGroupCreation()
         {
             driver.FindElement(By.Name("submit")).Click();
+            groupCache = null;
             return this;
         }
         public GroupHelper CreateGroup()
