@@ -25,6 +25,7 @@ namespace Addressbook_Web_Tests
             }
             List<GroupData> oldGroups = app.Groups.GetGroupList();
 
+            GroupData toBeRemoved = oldGroups[0];
             app.Groups.Remove(0);
 
             Assert.AreEqual(oldGroups.Count - 1, app.Groups.GetGroupCount());
@@ -34,6 +35,11 @@ namespace Addressbook_Web_Tests
             oldGroups.Sort();
             newGroups.Sort();
             Assert.AreEqual(oldGroups, newGroups);
+
+            foreach (GroupData group in newGroups)
+            {
+                Assert.AreNotEqual(group.Id, toBeRemoved.Id);
+            }
         }
     }
 }

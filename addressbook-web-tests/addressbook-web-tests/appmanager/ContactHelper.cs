@@ -49,12 +49,14 @@ namespace Addressbook_Web_Tests
         public ContactHelper InitContactModification()
         {
             driver.FindElement(By.CssSelector("img[alt=\"Edit\"]")).Click();
+            contactCache = null;
             return this;
         }
 
         public ContactHelper SubmitContactModification()
         {
             driver.FindElement(By.Name("update")).Click();
+            contactCache = null;
             return this;
         }
 
@@ -79,6 +81,7 @@ namespace Addressbook_Web_Tests
         public ContactHelper ConfirmContactCreation()
         {
             driver.FindElement(By.XPath("(//input[@name='submit'])")).Click();
+            contactCache = null;
             return this;
         }
 
@@ -95,6 +98,7 @@ namespace Addressbook_Web_Tests
         {
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
             driver.SwitchTo().Alert().Accept();
+            contactCache = null;
             return this;
         }
 
@@ -104,20 +108,25 @@ namespace Addressbook_Web_Tests
             return this;
         }
 
+        private List<ContactData> contactCache = null;
         public List<ContactData> GetContactList()
         {
-            manager.Navigator.GoToHomePage();
-            List<ContactData> contacts = new List<ContactData>();
-            List<IWebElement> cells = new List<IWebElement>();
-            ICollection<IWebElement> contactstable = driver.FindElements(By.Name("entry"));
-
-            foreach (IWebElement element in contactstable)
+            if (contactCache == null)
             {
-                cells = element.FindElements((By.TagName("td"))).ToList();
-                contacts.Add(new ContactData(cells[2].Text, cells[1].Text));
+                contactCache = new List<ContactData>();
+                manager.Navigator.GoToHomePage();
+                List<ContactData> contacts = new List<ContactData>();
+                List<IWebElement> cells = new List<IWebElement>();
+                ICollection<IWebElement> contactstable = driver.FindElements(By.Name("entry"));
+
+                foreach (IWebElement element in contactstable)
+                {
+                    cells = element.FindElements((By.TagName("td"))).ToList();
+                    contactCache.Add(new ContactData(cells[2].Text, cells[1].Text));
+                }
             }
             
-            return contacts;
+            return new List<ContactData>(contactCache);
         }
 
         public bool CompareTo(List<ContactData> oldContactslist, List<ContactData> newContactslist)
