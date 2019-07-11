@@ -15,7 +15,7 @@ namespace Addressbook_Web_Tests
         {
             ContactData contact = new ContactData("Test1", "surname");
             contact.Address = "London";
-            contact.Mobile = "9876546";
+            contact.MobilePhone = "9876546";
 
             List<ContactData> oldContacts = app.Contacts.GetContactList();
 
@@ -34,7 +34,7 @@ namespace Addressbook_Web_Tests
         {
             ContactData contact = new ContactData("", "");
             contact.Address = "";
-            contact.Mobile = "";
+            contact.MobilePhone = "";
 
             List<ContactData> oldContacts = app.Contacts.GetContactList();
 

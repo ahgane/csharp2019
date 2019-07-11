@@ -20,7 +20,7 @@ namespace Addressbook_Web_Tests
             {
                 ContactData contact = new ContactData("ToDelete", "Deleted");
                 contact.Address = "NoAddress";
-                contact.Mobile = "9876546";
+                contact.MobilePhone = "9876546";
 
                 app.Contacts.NewContact(contact);
             }

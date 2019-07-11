@@ -18,7 +18,7 @@ namespace Addressbook_Web_Tests
             {
                 ContactData contact = new ContactData("ToModify", "Modify in test");
                 contact.Address = "some address";
-                contact.Mobile = "9876546";
+                contact.MobilePhone = "9876546";
 
                 app.Contacts.NewContact(contact);
             }
