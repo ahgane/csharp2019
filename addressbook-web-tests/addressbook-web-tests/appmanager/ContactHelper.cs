@@ -7,6 +7,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
+using System.Text.RegularExpressions;
 
 namespace Addressbook_Web_Tests
 {
@@ -26,11 +27,13 @@ namespace Addressbook_Web_Tests
             string firstName = cells[2].Text;
             string address = cells[3].Text;
             string allPhones = cells[5].Text;
+            string allEmails = cells[4].Text;
 
             return new ContactData(firstName, lastName)
             {
                 Address = address,
                 AllPhones = allPhones,
+                AllEmails = allEmails
             };
         }
 
@@ -48,6 +51,8 @@ namespace Addressbook_Web_Tests
             string workPhone = driver.FindElement(By.Name("work")).GetAttribute("value");
 
             string email = driver.FindElement(By.Name("email")).GetAttribute("value");
+            string email2 = driver.FindElement(By.Name("email2")).GetAttribute("value");
+            string email3 = driver.FindElement(By.Name("email3")).GetAttribute("value");
 
             return new ContactData(firstName, lastName)
             {
@@ -55,7 +60,9 @@ namespace Addressbook_Web_Tests
                 HomePhone = homePhone,
                 MobilePhone = mobilePhone,
                 WorkPhone = workPhone,
-                Email = email
+                Email = email,
+                Email2 = email2,
+                Email3 = email3
             };
         }
 
@@ -201,6 +208,15 @@ namespace Addressbook_Web_Tests
                 }
                 return true;
             }
+        }
+
+
+        public int GetNumberOfSearchResults()
+        {
+            manager.Navigator.GoToHomePage();
+            string text = driver.FindElement(By.TagName("label")).Text;
+            Match m = new Regex(@"\d+").Match(text);
+            return Int32.Parse(m.Value);
         }
 
     }

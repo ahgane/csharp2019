@@ -18,7 +18,7 @@ namespace Addressbook_Web_Tests
             ContactData fromEditForm = app.Contacts.GetContactInformationEditForm(i);
             Assert.AreEqual(fromTable, fromEditForm);
             Assert.AreEqual(fromTable.Address, fromEditForm.Address);
-            Assert.AreEqual(fromTable.Email, fromEditForm.Email);
+            Assert.AreEqual(fromTable.AllEmails, fromEditForm.AllEmails);
             Assert.AreEqual(fromTable.AllPhones, fromEditForm.AllPhones);
 
         }

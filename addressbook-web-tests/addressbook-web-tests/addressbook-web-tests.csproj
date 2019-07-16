@@ -77,6 +77,7 @@
     <Compile Include="tests\GroupCreationTests.cs" />
     <Compile Include="model\ContactData.cs" />
     <Compile Include="tests\LoginTests.cs" />
+    <Compile Include="tests\SearchTests.cs" />
     <Compile Include="tests\TestBase.cs" />
     <Compile Include="tests\UnitTest1.cs" />
     <Compile Include="tests\UnitTest2.cs" />
