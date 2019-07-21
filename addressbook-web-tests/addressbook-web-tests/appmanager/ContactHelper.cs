@@ -185,32 +185,6 @@ namespace Addressbook_Web_Tests
             return new List<ContactData>(contactCache);
         }
 
-        public bool CompareTo(List<ContactData> oldContactslist, List<ContactData> newContactslist)
-        {
-            if (oldContactslist.Count != newContactslist.Count)
-            {
-                return false;
-            }
-            else
-            {
-
-                for (int i = 0; i < oldContactslist.Count; i++)
-                {
-                    if (oldContactslist[i].Surname == newContactslist[i].Surname)
-                    {
-                        return (oldContactslist[i].Name == newContactslist[i].Name);
-                    }
-                    else
-                    {
-                        return (oldContactslist[i].Surname == newContactslist[i].Surname);
-                    }
-
-                }
-                return true;
-            }
-        }
-
-
         public int GetNumberOfSearchResults()
         {
             manager.Navigator.GoToHomePage();

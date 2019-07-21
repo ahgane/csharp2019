@@ -25,7 +25,7 @@ namespace Addressbook_Web_Tests
             oldContacts.Add(contact);
             oldContacts.Sort();
             newContacts.Sort();
-            app.Contacts.CompareTo(oldContacts, newContacts);
+            Assert.AreEqual(oldContacts, newContacts);
 
 
         }
@@ -44,7 +44,7 @@ namespace Addressbook_Web_Tests
             oldContacts.Add(contact);
             oldContacts.Sort();
             newContacts.Sort();
-            app.Contacts.CompareTo(oldContacts, newContacts);
+            Assert.AreEqual(oldContacts, newContacts);
 
 
         }

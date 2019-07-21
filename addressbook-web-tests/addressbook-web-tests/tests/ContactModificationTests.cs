@@ -53,7 +53,7 @@ namespace Addressbook_Web_Tests
 
             //           Assert.AreEqual(oldContacts, newContacts);
 
-            app.Contacts.CompareTo(oldContacts, newContacts);
+            Assert.AreEqual(oldContacts, newContacts);
 
             foreach (ContactData contact in newContacts)
             {

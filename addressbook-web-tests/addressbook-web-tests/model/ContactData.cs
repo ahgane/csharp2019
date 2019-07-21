@@ -50,7 +50,16 @@ namespace Addressbook_Web_Tests
                 return 1;
             }
 
-            return (Name.CompareTo(other.Name) & Surname.CompareTo(other.Surname));
+            int temp = Surname.CompareTo(other.Surname);
+            if (temp == 0)
+                {
+                    return (Name.CompareTo(other.Name));
+                }
+            else
+                {
+                return temp;
+            }
+   
         }
         public string Name { get; set; }
         public string Surname { get; set; }
