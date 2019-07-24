@@ -116,7 +116,7 @@ namespace Addressbook_Web_Tests
             {
                 return "";
             }
-            return Regex.Replace(phone, "[ -()]", "")+ "\r\n";
+            return Regex.Replace(phone, "H:M:W:[ -()]", "")+ "\r\n";
         }
 
         private string CleanUpEmail(string email)

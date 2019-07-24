@@ -37,10 +37,45 @@ namespace Addressbook_Web_Tests
             };
         }
 
+        internal String GetContactInformationFromContactDetails(int index)
+        {
+            manager.Navigator.GoToHomePage();
+            ViewContactDetails(index);
+
+//            List<IWebElement> tmplist = driver.FindElements(By.Id("content")).ToList();
+            string tmplist2 = CleanUpStr(driver.FindElement(By.Id("content")).Text);
+            
+ //           String a = tmplist.ToString();
+
+            return tmplist2+"\r\n";
+
+        }
+
+        private string CleanUpStr(string tempstr)
+        {
+            if (tempstr == null || tempstr == "")
+            {
+                return "";
+            }
+            string cleanphones = Regex.Replace(tempstr, "[HMW]: ", "");
+            string cleanemails = Regex.Replace(cleanphones, "[-()]", "");
+
+            return cleanemails;
+        }
+
+        public ContactHelper ViewContactDetails(int index)
+        {
+            driver.FindElements(By.Name("entry"))[index]
+                .FindElements(By.TagName("td"))[6]
+                .FindElement(By.TagName("a")).Click();
+            contactCache = null;
+            return this;
+        }
+
         internal ContactData GetContactInformationEditForm(int index)
         {
             manager.Navigator.GoToHomePage();
-            InitContactModification(0);
+            InitContactModification(index);
 
             string firstName = driver.FindElement(By.Name("firstname")).GetAttribute("value");
             string lastName = driver.FindElement(By.Name("lastname")).GetAttribute("value");
