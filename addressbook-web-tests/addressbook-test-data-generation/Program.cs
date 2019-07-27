@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Addressbook_Web_Tests;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace addressbook_test_data_generation
 {
@@ -16,16 +18,57 @@ namespace addressbook_test_data_generation
 
             int count = Convert.ToInt32(args[0]);
             StreamWriter writer = new StreamWriter(args[1]);
+            string format = args[2];
 
-            for (int i=0; i < count; i++)
+            List<GroupData> groups = new List<GroupData>();
+
+            for (int i = 0; i < count; i++)
             {
-                writer.WriteLine(String.Format("${0},${1},${2}",
-                    TestBase.GenerateRandomString(10),
-                TestBase.GenerateRandomString(10),
-                TestBase.GenerateRandomString(10)));
+                groups.Add(new GroupData(TestBase.GenerateRandomString(10))
+                {
+                    Header = TestBase.GenerateRandomString(10),
+                    Footer = TestBase.GenerateRandomString(10)
+                });
+/*                writer.WriteLine(String.Format("${0},${1},${2}",
+                      TestBase.GenerateRandomString(10),
+                  TestBase.GenerateRandomString(100),
+                  TestBase.GenerateRandomString(100)));*/
             }
+
+
+                if (format == "csv")
+                {
+                    WriteGroupsToCSVFile(groups, writer);
+                }
+                else if (format == "xml")
+                {
+                    WriteGroupsToXMLFile(groups, writer);
+                }
+                else
+                {
+                    System.Console.Out.Write("Unrecognized format" + format);
+                }
+            
+
             writer.Close();
             
         }
+
+        static void WriteGroupsToCSVFile (List<GroupData> groups, StreamWriter writer)
+        {
+            foreach (GroupData group in groups)
+            {
+                writer.WriteLine(String.Format("${0},${1},${2}",
+                    group.Name, group.Header, group.Footer));
+
+            }
+
+        }
+        static void WriteGroupsToXMLFile (List<GroupData> groups, StreamWriter writer)
+        {
+            new XmlSerializer(typeof(List<GroupData>)).Serialize(writer, groups);
+
+        }
+
     }
 }
