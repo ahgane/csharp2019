@@ -117,14 +117,12 @@ namespace Addressbook_Web_Tests
             DateTime startUI = DateTime.Now;
             List<GroupData> fromUI = app.Groups.GetGroupList();
             DateTime endUI = DateTime.Now;
-            System.Console.Out.WriteLine("Время чтнения с пользовательского интерфейса: " + endUI.Subtract(startUI));
+            System.Console.Out.WriteLine("Время чтения с помощью пользовательского интерфейса: " + endUI.Subtract(startUI));
 
             DateTime startDB = DateTime.Now;
-            AddressBookBD db = new AddressBookBD();
-            List<GroupData> fromDb = (from g in db.Groups select g).ToList();
-            db.Close();
+            List<GroupData> fromDB= GroupData.GetAll();
             DateTime endDB = DateTime.Now;
-            System.Console.Out.WriteLine("Время чтнения из Базы Данных: " + endDB.Subtract(startDB));
+            System.Console.Out.WriteLine("Время чтения из Базы Данных: " + endDB.Subtract(startDB));
         }
 
     }

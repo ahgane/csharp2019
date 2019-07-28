@@ -73,5 +73,14 @@ namespace Addressbook_Web_Tests
 
         [Column(Name = "group_id"), NotNull, PrimaryKey, Identity]
         public string Id { get; set; }
+
+        public static List<GroupData> GetAll()
+        {
+            using (AddressBookBD db = new AddressBookBD())
+            {
+                return (from g in db.Groups select g).ToList();
+            }
+
+        }
     }
 }
