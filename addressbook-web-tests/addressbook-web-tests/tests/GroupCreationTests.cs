@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -24,10 +25,10 @@ namespace Addressbook_Web_Tests
                 groups.Add(new GroupData(GenerateRandomString(30))
                 {
                     Header = GenerateRandomString(100),
-                Footer = GenerateRandomString(100)
+                    Footer = GenerateRandomString(100)
 
                 });
-        }
+            }
 
             return groups;
         }
@@ -54,9 +55,9 @@ namespace Addressbook_Web_Tests
         {
             List<GroupData> groups = new List<GroupData>();
 
-           return (List<GroupData>) 
-                new XmlSerializer(typeof(List<GroupData>))
-                .Deserialize(new StreamReader(@"groups.xml"));
+            return (List<GroupData>)
+                 new XmlSerializer(typeof(List<GroupData>))
+                 .Deserialize(new StreamReader(@"groups.xml"));
 
         }
 
@@ -100,7 +101,7 @@ namespace Addressbook_Web_Tests
 
             app.Groups.New(group);
 
-            Assert.AreEqual(oldGroups.Count+1, app.Groups.GetGroupCount());
+            Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupCount());
 
             List<GroupData> newGroups = app.Groups.GetGroupList();
             oldGroups.Add(group);
@@ -108,5 +109,23 @@ namespace Addressbook_Web_Tests
             newGroups.Sort();
             Assert.AreEqual(oldGroups, newGroups);
         }
+
+        [Test]
+
+        public void TestDBConnectivity()
+        {
+            DateTime startUI = DateTime.Now;
+            List<GroupData> fromUI = app.Groups.GetGroupList();
+            DateTime endUI = DateTime.Now;
+            System.Console.Out.WriteLine("Время чтнения с пользовательского интерфейса: " + endUI.Subtract(startUI));
+
+            DateTime startDB = DateTime.Now;
+            AddressBookBD db = new AddressBookBD();
+            List<GroupData> fromDb = (from g in db.Groups select g).ToList();
+            db.Close();
+            DateTime endDB = DateTime.Now;
+            System.Console.Out.WriteLine("Время чтнения из Базы Данных: " + endDB.Subtract(startDB));
+        }
+
     }
 }
