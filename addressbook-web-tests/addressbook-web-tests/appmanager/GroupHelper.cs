@@ -20,10 +20,40 @@ namespace Addressbook_Web_Tests
         {
             manager.Navigator.GoToGroupsPage();
             SelectGroup(v);
-            RemoveGroup(v);
+            RemoveGroup();
             manager.Navigator.GoToGroupsPage();
             return this;
         }
+
+        public GroupHelper Remove(GroupData toBeRemoved)
+        {
+            manager.Navigator.GoToGroupsPage();
+            SelectGroup(toBeRemoved.Id);
+            RemoveGroup();
+            manager.Navigator.GoToGroupsPage();
+            return this;
+        }
+
+        public GroupHelper RemoveGroup()
+        {
+            driver.FindElement(By.Name("delete")).Click();
+            groupCache = null;
+            return this;
+        }
+
+        public GroupHelper SelectGroup(String id)
+        {
+            driver.FindElement(By.XPath("(//input[@name='selected[]' and @value='" + id + "'])")).Click();
+            return this;
+        }
+
+        public GroupHelper SelectGroup(int id)
+        {
+            driver.FindElement(By.XPath("(//span[@class='group'])[" + (id + 1) + "]")).Click();
+
+            return this;
+        }
+
 
         private List<GroupData> groupCache = null;
 
@@ -110,21 +140,8 @@ namespace Addressbook_Web_Tests
             return this;
         }
 
-        public GroupHelper RemoveGroup(int index)
-        {
-            driver.FindElement(By.XPath("(//input[@name='delete'])[" + (index+1) + "]")).Click();
-            groupCache = null;
-            return this;
-        }
 
-        public GroupHelper SelectGroup(int index)
-        {
-            driver.FindElement(By.XPath("(//span[@class='group'])[" + (index+1) + "]")).Click();
-
-            return this;
-        }
-
-        public GroupHelper SubmitGroupModification()
+           public GroupHelper SubmitGroupModification()
         {
             driver.FindElement(By.Name("update")).Click();
             groupCache = null;

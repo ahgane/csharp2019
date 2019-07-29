@@ -12,7 +12,7 @@ using Newtonsoft.Json;
 namespace Addressbook_Web_Tests
 {
     [TestFixture]
-    public class ContactCreationTests : AuthTestBase
+    public class ContactCreationTests : GroupTestBase
     {
 
         public static IEnumerable<ContactData> RandomContactDataProvider()
