@@ -93,6 +93,9 @@ namespace Addressbook_Web_Tests
         [Column(Name = "id"), PrimaryKey]
         public string Id { get; set; }
 
+        [Column (Name = "deprecated")]
+        public string Deprecated { get; set; }
+
         public string AllPhones
         {
             get
@@ -147,6 +150,15 @@ namespace Addressbook_Web_Tests
                 return "";
             }
             return Regex.Replace(email, "[ -()]mailto:", "") + "\r\n";
+        }
+
+        public static List<ContactData> GetAll()
+        {
+            using (AddressBookBD db = new AddressBookBD())
+            {
+                return (from c in db.Contacts.Where (x => x.Deprecated == "0000-00-00 00:00:00") select c).ToList();
+            }
+
         }
 
     }
