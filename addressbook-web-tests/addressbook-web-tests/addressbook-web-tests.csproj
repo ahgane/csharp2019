@@ -81,6 +81,7 @@
     <Compile Include="model\AccountData.cs" />
     <Compile Include="appmanager\ApplicationManager.cs" />
     <Compile Include="model\AddressBookBD.cs" />
+    <Compile Include="model\GroupContactRelation.cs" />
     <Compile Include="tests\AuthTestBase.cs" />
     <Compile Include="tests\ContactCreationTests.cs" />
     <Compile Include="appmanager\ContactHelper.cs" />

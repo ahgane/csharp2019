@@ -8,7 +8,7 @@ using LinqToDB.Mapping;
 
 namespace Addressbook_Web_Tests
 {
-    [Table(Name ="group_list")]
+    [Table(Name = "group_list")]
 
     public class GroupData : IEquatable<GroupData>, IComparable<GroupData>
     {
@@ -49,10 +49,10 @@ namespace Addressbook_Web_Tests
 
         public override string ToString()
         {
-            return "name=" + Name + "\nheader=" + Header + "\nfooter=" +Footer;
+            return "name=" + Name + "\nheader=" + Header + "\nfooter=" + Footer;
         }
 
-        [Column (Name = "group_name"), NotNull]
+        [Column(Name = "group_name"), NotNull]
         public string Name { get; set; }
 
         [Column(Name = "group_header"), NotNull]
@@ -61,7 +61,7 @@ namespace Addressbook_Web_Tests
         [Column(Name = "group_footer"), NotNull]
         public string Footer { get; set; } = "";
 
-        public int CompareTo (GroupData other)
+        public int CompareTo(GroupData other)
         {
             if (Object.ReferenceEquals(other, null))
             {
@@ -82,5 +82,21 @@ namespace Addressbook_Web_Tests
             }
 
         }
+
+        public List<ContactData> GetContacts()
+
+        {
+            using (AddressBookBD db = new AddressBookBD())
+            {
+                return (from c in db.Contacts
+                        from gcr in db.GCR.Where(p => p.GroupId == Id && p.ContactId == c.Id)
+                        select c).Distinct().ToList();
+            }
+
+
+        }
+
+
+
     }
 }

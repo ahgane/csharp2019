@@ -110,20 +110,28 @@ namespace Addressbook_Web_Tests
             Assert.AreEqual(oldGroups, newGroups);
         }
 
-        [Test]
 
+        [Test]
         public void TestDBConnectivity()
         {
-            DateTime startUI = DateTime.Now;
-            List<GroupData> fromUI = app.Groups.GetGroupList();
-            DateTime endUI = DateTime.Now;
-            System.Console.Out.WriteLine("Время чтения с помощью пользовательского интерфейса: " + endUI.Subtract(startUI));
+            /*            DateTime startUI = DateTime.Now;
+                        List<GroupData> fromUI = app.Groups.GetGroupList();
+                        DateTime endUI = DateTime.Now;
+                        System.Console.Out.WriteLine("Время чтения с помощью пользовательского интерфейса: " + endUI.Subtract(startUI));
 
-            DateTime startDB = DateTime.Now;
-            List<GroupData> fromDB= GroupData.GetAll();
-            DateTime endDB = DateTime.Now;
-            System.Console.Out.WriteLine("Время чтения из Базы Данных: " + endDB.Subtract(startDB));
+                        DateTime startDB = DateTime.Now;
+                        List<GroupData> fromDB= GroupData.GetAll();
+                        DateTime endDB = DateTime.Now;
+                        System.Console.Out.WriteLine("Время чтения из Базы Данных: " + endDB.Subtract(startDB));
+            */
+
+            foreach (ContactData contact in GroupData.GetAll()[0].GetContacts())
+            {
+                System.Console.Out.WriteLine(contact.Name+ " " + contact.Surname);
+            }
+
         }
 
     }
 }
+

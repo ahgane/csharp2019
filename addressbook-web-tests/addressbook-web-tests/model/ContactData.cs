@@ -4,11 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using LinqToDB.Mapping;
 
 namespace Addressbook_Web_Tests
 {
-   public class ContactData : IEquatable<ContactData>, IComparable<ContactData>
+    [Table(Name = "addressbook")]
+    public class ContactData : IEquatable<ContactData>, IComparable<ContactData>
     {
+ 
         private string allPhones;
         private string allEmails;
 
@@ -66,16 +69,29 @@ namespace Addressbook_Web_Tests
             }
    
         }
+
+       
+        [Column (Name = "firstname")]
         public string Name { get; set; }
+        [Column(Name = "lastname")]
         public string Surname { get; set; }
-        public string Address { get; set; } 
+        [Column(Name = "address")]
+        public string Address { get; set; }
+
+        [Column(Name = "home")]
 
         public string HomePhone { get; set; } 
 
         public string MobilePhone { get; set; }
+
+        [Column(Name = "email")]
         public string Email { get; set; }
         public string Email2 { get; set; }
         public string Email3 { get; set; }
+        public string WorkPhone { get; set; }
+
+        [Column(Name = "id"), PrimaryKey]
+        public string Id { get; set; }
 
         public string AllPhones
         {
@@ -132,10 +148,6 @@ namespace Addressbook_Web_Tests
             }
             return Regex.Replace(email, "[ -()]mailto:", "") + "\r\n";
         }
-
-        public string WorkPhone { get; set; } 
-
-        public string Id { get; set; }
 
     }
 }
