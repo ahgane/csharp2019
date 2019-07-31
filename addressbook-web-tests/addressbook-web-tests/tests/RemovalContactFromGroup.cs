@@ -14,7 +14,7 @@ namespace Addressbook_Web_Tests
         {
             List<GroupData> groups = GroupData.GetAll();
 
-            if (groups != null)
+            if (groups.Count != 0)
             {
                 for (int i = 0; i < groups.Count; i++)
                 {
