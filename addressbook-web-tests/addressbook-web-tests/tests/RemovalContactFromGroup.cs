@@ -12,22 +12,36 @@ namespace Addressbook_Web_Tests
         [Test]
         public void TestRemovalContactFromGroup()
         {
-            GroupData group = GroupData.GetAll()[0];
-            List<ContactData> oldList = group.GetContacts();
-    //        ContactData contact = ContactData.GetAll().Except(oldList).First();
+            List<GroupData> groups = GroupData.GetAll();
 
-            app.Contacts.RemoveContactFromGroup(oldList[0], group);
-
-
-            List<ContactData> newList = group.GetContacts();
-            oldList.Remove(oldList[0]);
-            newList.Sort();
-            oldList.Sort();
-
-            Assert.AreEqual(oldList, newList);
+            if (groups != null)
+            {
+                for (int i = 0; i < groups.Count; i++)
+                {
+                    GroupData group = groups[i];
+                    List<ContactData> oldList = group.GetContacts();
 
 
+                    if (oldList.Count != 0)
+                    {
+                        ContactData contactToRemove = oldList[0];
+                        app.Contacts.RemoveContactFromGroup(contactToRemove, group);
 
+                        List<ContactData> newList = group.GetContacts();
+                        oldList.Remove(contactToRemove);
+                        newList.Sort();
+                        oldList.Sort();
+
+                        Assert.AreEqual(oldList, newList);
+
+                        i = groups.Count;
+                    }
+                }
+            }
+            else
+            {
+                System.Console.Out.Write("Группы еще не созданы. Создайте группу с контактами и повторите тест.");
+            }
         }
     }
 }

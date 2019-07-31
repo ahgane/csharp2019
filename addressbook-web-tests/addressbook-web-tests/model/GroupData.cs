@@ -73,6 +73,8 @@ namespace Addressbook_Web_Tests
 
         [Column(Name = "group_id"), NotNull, PrimaryKey, Identity]
         public string Id { get; set; }
+
+        [Column(Name = "deprecated")]
         public string Deprecated { get;  set; }
 
         public static List<GroupData> GetAll()
@@ -91,7 +93,7 @@ namespace Addressbook_Web_Tests
             {
                 return (from c in db.Contacts
                         from gcr in db.GCR.Where(p => p.GroupId == Id && p.ContactId == c.Id 
-                        && c.Deprecated == "0000 - 00 - 00 00:00:00")
+                        && c.Deprecated == "0000-00-00 00:00:00")
                         select c).Distinct().ToList();
             }
 
